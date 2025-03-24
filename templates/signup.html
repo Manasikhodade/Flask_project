@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://th.bing.com/th/id/OIP.HCpLrqEC1j-4FdhdeVw8CwHaEt?w=245&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #000;
+        }
+
+        .signup-container {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            color: #000;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group input:focus {
+            background: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .signup-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #6a11cb;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .signup-btn:hover {
+            background-color: #2575fc;
+        }
+
+        .success-message {
+            display: {% if success %} block {% else %} none {% endif %};
+            color: #4caf50;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .extra-features {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .extra-features a {
+            color: #6a11cb;
+            text-decoration: none;
+        }
+
+        .extra-features a:hover {
+            color: #2575fc;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Sign Up</h1>
+          {% if error %}
+            <p class="error-message">{{ error }}</p>
+        {% endif %}
+        <form id="signupForm" method="POST" action="/signup">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required pattern=".{3,}" title="Must be at least 3 characters">
+                <span class="tooltip">Username must be at least 3 characters long.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <span class="tooltip">Please enter a valid email address.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required pattern=".{6,}" title="Must be at least 6 characters">
+                <span class="tooltip">Password must be at least 6 characters long.</span>
+            </div>
+
+            <button type="submit" class="signup-btn">Sign Up</button>
+            <p class="success-message">Signup successful! Welcome aboard!</p>
+        </form>
+
+
+        <div class="social-login">
+            <a href="/google.com">Sign up with Google</a>
+            <a href="/facebook.com">Sign up with Facebook</a>
+        </div>
+
+        <div class="extra-features">
+            <p>Already have an account? <a href="/login" onclick="sessionStorage.clear(); location.href=this.href">Login Here</a>
+.</p>
+            <p><a href="/forgotpassword">Forgot password?</a></p>
+        </div>
+    </div>
+
+
+</body>
+</html>
